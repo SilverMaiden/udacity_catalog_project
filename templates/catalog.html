@@ -1,0 +1,85 @@
+    <!-- Bootstrap core CSS -->
+{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+    {% block metas %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+    {% endblock %}
+
+    {% block styles %}
+    {{ super() }}
+    <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href='{{url_for('.static', filename='css/bootstrap.min.css')}}'>
+    <!-- Custom styles for this template -->
+        <link rel = "stylesheet" href='{{ url_for('.static', filename='css/1-col-portfolio.css') }}'>
+    {% endblock %}
+
+{% endblock %}
+
+{% block body %}
+
+    <!-- Navigation -->
+    {% block navbar %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div class="container">
+            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    {% endblock %}
+
+    <!-- Page Content -->
+    {% block content %}
+        <div class="container">
+
+          <!-- Page Heading -->
+          <h1 class="my-4"> Fashion Catalog App
+            <small>Secondary Text</small>
+          </h1>
+
+      <hr>
+
+        {% for category in categories %}          
+        <!--  Categories -->
+          <div class="row">
+            <div class="col-md-7">
+              <a href="#">
+                <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+              </a>
+            </div>
+            <div class="col-md-5">
+                <a href='{{url_for('showCategoryItems', category_name = category.name)}}'><h3>{{category.name}}</h3></a>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, temporibus, dolores, at, praesentium ut unde repudiandae voluptatum sit ab debitis suscipit fugiat natus velit excepturi amet commodi deleniti alias possimus!</p>
+              <a class="btn btn-primary" href="#">View Items</a>
+            </div>
+          </div>
+          <!-- /.row -->
+          <hr>
+
+        {% endfor %}
+    {% endblock %}
+
+{% endblock %}
